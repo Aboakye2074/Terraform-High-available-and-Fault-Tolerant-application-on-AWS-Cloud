@@ -1,0 +1,12 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+    {
+        "Effect": "Allow",
+        "Action": ["s3:Get*"],
+        "Principal":"*",
+        "Resource": ["BUCKET_ARN", "BUCKET_ARN/*"],
+        "Condition": {"StringLike": {"aws:autoscaling:groupName": "Terraform*"}}
+    }
+    ]
+  }
