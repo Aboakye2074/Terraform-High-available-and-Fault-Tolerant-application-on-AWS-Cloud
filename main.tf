@@ -86,7 +86,7 @@ resource "aws_launch_configuration" "launch_configuration" {
     create_before_destroy = true
   }
   depends_on = [
-    aws_s3_bucket_object.object,
+    aws_s3_bucket_object.object, aws_nat_gateway.nat_gateway
   ]
 }
 
