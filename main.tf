@@ -35,7 +35,7 @@ module "vpc" {
 
 # S3 bucket
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "my-simple-webpage"
+  bucket = "tonboazztek"
 }
 
 resource "aws_s3_bucket_acl" "bucket_acl" {
@@ -51,11 +51,11 @@ resource "aws_s3_bucket_policy" "policy" {
 
 # Upload the code to S3
 resource "aws_s3_bucket_object" "object" {
-  for_each = fileset("simple-webpage/", "**")
+  for_each = fileset("tonboazztek/", "**")
   bucket = aws_s3_bucket.s3_bucket.bucket
   key = each.value
-  source = "./simple-webpage/${each.value}"
-  etag = filemd5("./simple-webpage/${each.value}")
+  source = "./tonboazztek/${each.value}"
+  etag = filemd5("./tonboazztek/${each.value}")
   depends_on = [
     aws_s3_bucket.s3_bucket,
   ]
