@@ -35,7 +35,7 @@ module "vpc" {
 
 # S3 bucket
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "tonboazztek"
+  bucket = "terraform"
 }
 
 resource "aws_s3_bucket_acl" "bucket_acl" {
@@ -51,11 +51,11 @@ resource "aws_s3_bucket_policy" "policy" {
 
 # Upload the code to S3
 resource "aws_s3_bucket_object" "object" {
-  for_each = fileset("tonboazztek/", "**")
+  for_each = fileset("terraform/", "**")
   bucket = aws_s3_bucket.s3_bucket.bucket
   key = each.value
-  source = "./tonboazztek/${each.value}"
-  etag = filemd5("./tonboazztek/${each.value}")
+  source = "./terraform/${each.value}"
+  etag = filemd5("./terraform/${each.value}")
   depends_on = [
     aws_s3_bucket.s3_bucket,
   ]
